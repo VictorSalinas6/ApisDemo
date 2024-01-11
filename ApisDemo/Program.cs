@@ -23,3 +23,15 @@ var kanyeResponse = client.GetStringAsync(kanyeURL).Result;
 //var kanyeQuote = JObject.Parse(kanyeResponse).GetValue("quote").ToString();
 var kanyeQuote = JObject.Parse(kanyeResponse)["quote"].ToString();
 
+//Git ignore, we usually ignore the created file json for sensitive data, usually called appsettings
+
+//using api key section
+
+//grab appsettings file
+var appsettingsText = File.ReadAllText("appsettings.json");
+
+//Get the api key from the appsettings file using it's name "apiKey"
+var apiKey = JObject.Parse(appsettingsText)["apiKey"].ToString();
+
+//Build the api url using the provided params you chose (I chose the zip code option) along with the api key
+var apiURL = $"link.zipcode.appid{apiKey}.etc";
